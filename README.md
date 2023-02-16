@@ -1,2 +1,1 @@
-# alx-low_level_programming
-Repo for C programming projects
+C programming scripts and bash scripts.
