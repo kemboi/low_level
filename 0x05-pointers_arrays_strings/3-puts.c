@@ -1,4 +1,4 @@
-i#include "main.h"
+#include "main.h"
 /**
  * _puts - function that returns the length of a string
  * @str: pointer to char variable
