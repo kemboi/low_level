@@ -1,4 +1,4 @@
-i#include "main.h"
+#include "main.h"
 #include <stdio.h>
 /**
  * _strncat - function that returns concatinated string
@@ -9,12 +9,18 @@ i#include "main.h"
  */
 char *_strncat(char *dest, char *src, int n)
 {
-	char *temp = dest;
+	int len = 0, count = 0;
 
-	while (*src != '\0')
+	while (dest[len])
 	{
-		*dest++ = *src++;
+		len++;
 	}
-	*dest++ = '\0';
-	return (temp);
+	while (count < n && src[count])
+	{
+		dest[len] = src[count];
+		count++;
+		len++;
+	}
+	dest[len + n + 1] = '\0';
+	return (dest);
 }
