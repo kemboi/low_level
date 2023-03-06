@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 /**
  * _strchr - function that seaches for a character in an array
  * @s: pointer to char array containing c
@@ -7,9 +8,6 @@
  */
 char *_strchr(char *s, char c)
 {
-	char *result;
-
-	result = &s[0];
 	while (*s)
 	{
 		if (*s == c)
@@ -18,5 +16,5 @@ char *_strchr(char *s, char c)
 		}
 		s++;
 	}
-	return ('\0');
+	return (NULL);
 }
