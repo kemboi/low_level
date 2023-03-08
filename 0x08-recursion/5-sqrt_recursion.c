@@ -1,5 +1,5 @@
 #include "main.h"
-int _sqrt(int low, int high, int n);
+int _sqrt(int n, int num);
 /**
  * _sqrt_recursion - function to print the sqrt of a number
  * @n: int to find sqrt
@@ -7,38 +7,25 @@ int _sqrt(int low, int high, int n);
  */
 int _sqrt_recursion(int n)
 {
-	return (_sqrt(0, n, n));
+	if (n == 1)
+		return (n);
+	return (_sqrt(n, 2));
 }
 /**
   * _sqrt - Finds natural square root
-  * @low: low index
-  * @high: max index
+  * @num: counter
   * @n: int to calculate sqrt
   *
   * Return: the natural square root
   */
-int _sqrt(int low, int high, int n)
+int _sqrt(int n, int num)
 {
-	if (n == 1)
-		return (1);
-	if (low <= high)
-	{
-		int mid = low + (high - low) / 2;
+	int prod = num * num;
 
-		if ((mid * mid == n) && ((mid + 1) * (mid + 1) > n))
-		{
-			return (mid);
-		}
-		else if (mid * mid < n)
-		{
-			low = mid + 1;
-			return (_sqrt(low, high, n));
-		}
-		else
-		{
-			high = mid - 1;
-			return (_sqrt(low, high, n));
-		}
-	}
-	return (-1);
+	if (prod > n)
+		return (-1);
+
+	if (prod == n)
+		return (num);
+	return (_sqrt(n, num + 1));
 }
