@@ -29,5 +29,5 @@ int is_prime(int n, int i)
 	if ((n / i) < i)
 		return (1);
 
-	return (is_prime(n, i++));
+	return (is_prime(n, ++i));
 }
