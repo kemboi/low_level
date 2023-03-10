@@ -1,5 +1,7 @@
 #include "main.h"
+#include <stdio.h>
 int is_pal(int start, int end, char *s);
+int checkl(char *s);
 /**
   * is_palindrome - checks palindrome string
   * @s: string to check
@@ -8,22 +10,31 @@ int is_pal(int start, int end, char *s);
   */
 int is_palindrome(char *s)
 {
-	int len = 0, start = 0, end;
+	int start = 0, len = checkl(s), end = 0;
 
-	while (*s)
-	{
-		s++;
-		len++;
-	}
 	end = len - 1;
-
 	return (is_pal(start, end, s));
+}
+/**
+ * checkl - checks length of string
+ * @s: string to check length
+ * Return: length
+ */
+int checkl(char *s)
+{
+	int len = 0;
+
+	if (*s)
+	{
+		len = checkl(++s);
+	}
+	return (1 + len);
 }
 
 /**
   * is_pal -  checks for palindrome
   * @start: low pointer
-  * @end: high pointer
+  * @end: end pointer
   * @s: char array
   *
   * Return: 1 for prime or 0 composite
@@ -33,7 +44,7 @@ int is_pal(int start, int end, char *s)
 	if (end == 0)
 		return (1);
 
-	if (start <= end)
+	else if (start <= end)
 	{
 		if (s[start] == s[end])
 		{
