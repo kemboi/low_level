@@ -13,10 +13,9 @@ int main(int argc, char **argv)
 	int i, sum = 0;
 	unsigned int j;
 
-	if (argc < 2)
+	if (argc < 1)
 	{
 		printf("0\n");
-		return (1);
 	}
 	else
 	{
@@ -34,8 +33,8 @@ int main(int argc, char **argv)
 			}
 				sum += atoi(c);
 		}
+		printf("%d\n", sum);
 	}
-			printf("%d\n", sum);
 			return (0);
 }
 /**
