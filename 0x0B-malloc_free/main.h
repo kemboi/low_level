@@ -40,6 +40,7 @@ int is_palindrome(char *s);
 #ifndef MALLOC_FUNCTION
 #define MALLOC_FUNCTION
 char *create_array(unsigned int size, char c);
+char *_strdup(char *str);
 #endif
 #endif
 #endif
