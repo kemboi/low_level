@@ -34,6 +34,6 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 			j++;
 		}
 	}
-	return (p);
+	return (*p) ? (p) : (NULL);
 }
 
