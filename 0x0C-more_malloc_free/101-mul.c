@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 	}
 	else
 	{
-		printf("%ld\n", (long int) (atoi(argv[1]) * atoi(argv[2])));
+		printf("%c\n", (char)(atol(argv[1]) * atol(argv[2])));
 	}
 	return (0);
 }
