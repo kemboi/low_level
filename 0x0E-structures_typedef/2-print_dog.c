@@ -18,13 +18,13 @@ void print_dog(struct dog *d)
 		{
 			printf("Name: (nil)\n");
 		}
-		if (d->age != 0)
+		if (d->age)
 		{
 			printf("Age: %1f\n", d->age);
 		}
 		else
 		{
-			printf("Age: (nil)\n");
+			printf("Age: 0\n");
 		}
 		if (d->owner != NULL)
 		{
