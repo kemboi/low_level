@@ -1,5 +1,6 @@
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdlib.h>
 /**
  * print_numbers - variadic function to sum integers
  * @separator: string separator
@@ -18,7 +19,7 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 		for (i = 0; i < n; i++)
 		{
 			printf("%d", va_arg(ap, int));
-			if (!(*separator))
+			if (separator == NULL)
 				continue;
 			if (i < (n - 1))
 			{
