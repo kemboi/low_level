@@ -13,7 +13,11 @@ void print_all(const char * const format, ...)
 	char *temp;
 
 	va_start(ap, format);
-
+	while (format == NULL)
+	{
+		printf("\n");
+		return;
+	}
 	while (*(format + i))
 	{
 		switch (*(format + i))
@@ -29,17 +33,13 @@ void print_all(const char * const format, ...)
 				break;
 			case 's':
 				temp = va_arg(ap, char *);
-				if (temp != NULL)
-				{
-					printf("%s", temp);
-					break;
-				}
-				printf("(nil)");
+				(temp != NULL) ?
+					printf("%s", temp) : printf("(nil)");
 				break;
 		}
-		if (*(format + i + 1) != '\0' && ((*(format + i) == 'i') ||
-					(*(format + i) == 'f') || (*(format + i) == 's') ||
-				(*(format + i) == 'c')))
+		if (*(format + i + 1) != '\0' && ((*(format + i) == 'i')
+					|| (*(format + i) == 'f')
+					|| (*(format + i) == 's') || (*(format + i) == 'c')))
 			printf(", ");
 		i++;
 	}
