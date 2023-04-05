@@ -13,7 +13,7 @@ listint_t *createNewNode(int n);
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
 	listint_t *temp = *head, *newnode;
-	unsigned int pos = 1, l = countNodes(*head);
+	unsigned int pos = 0, l = countNodes(*head);
 
 	if (!(*head) && idx == 0)
 	{
@@ -30,7 +30,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 			(*head)->next = temp;
 			return (*head);
 		}
-		else if (pos == idx)
+		else if (pos == idx - 1)
 		{
 			newnode = createNewNode(n);
 			newnode->next = temp->next;
