@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "lists.h"
+unsigned int countNodes(listint_t *head);
+listint_t *createNewNode(int n);
 /**
  * insert_nodeint_at_index - inserts at index
  * @head: pointer to head
@@ -11,39 +13,62 @@
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
 	listint_t *temp = *head, *newnode;
-	unsigned int pos = 1;
+	unsigned int pos = 1, l = countNodes(*head);
 
-	if (head == NULL)
+	if (!(*head) && idx == 0)
 	{
-		return (NULL);
-	}
-	newnode = malloc(sizeof(listint_t));
-	if (newnode == NULL)
-	{
-		free(temp);
-		return (NULL);
-	}
-	if (*head == NULL)
-	{
-		*head = newnode;
-		newnode->next = NULL;
-		newnode->n = n;
+		*head = createNewNode(n);
 		return (*head);
 	}
-	if (idx == 0)
+	if (idx > l)
+		return (NULL);
+	while (temp)
 	{
-		newnode->next = *head;
-		newnode->n = n;
-		*head = newnode;
-		return (*head);
-	}
-	while (pos < idx)
-	{
+		if (idx == 0)
+		{
+			newnode = createNewNode(n);
+			(*head)->next = temp;
+			return (*head);
+		}
+		else if (pos == idx)
+		{
+			newnode = createNewNode(n);
+			newnode->next = temp->next;
+			temp->next = newnode;
+			return (newnode);
+		}
 		temp = temp->next;
 		pos++;
 	}
-	newnode->next = temp->next;
-	newnode->n = n;
-	temp->next = newnode;
-	return (newnode);
+	return (NULL);
+}
+/**
+ * countNodes - returns number of nodes in a linked list
+ * @head: head pointer
+ * Return: number of nodes
+ */
+unsigned int countNodes(listint_t *head)
+{
+	unsigned int nodes = 0;
+
+	if (head == NULL)
+		return (nodes);
+	return (1 + countNodes(head->next));
+}
+/**
+ * createNewNode - creates a new node
+ * @n: data to add in a new node
+ * Return: new node pointer
+ */
+listint_t *createNewNode(int n)
+{
+	listint_t *node;
+
+	node = malloc(sizeof(listint_t));
+
+	if (!node)
+		return (NULL);
+	node->n = n;
+	node->next = NULL;
+	return (node);
 }
