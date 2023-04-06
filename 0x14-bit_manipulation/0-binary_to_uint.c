@@ -10,7 +10,7 @@ int checknumber(const char *ch, int count);
  */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int n = 0, i = 0;
+	unsigned int n = 0;
 	int length = strlen(b);
 	int l = length;
 	int power = 0;
@@ -23,7 +23,6 @@ unsigned int binary_to_uint(const char *b)
 		if (checknumber(b, l) == 0)
 			return (0);
 		n += (*(b + length) == 49) ? (1 << power) : 0;
-		i++;
 		power++;
 	}
 	return (n);
