@@ -14,6 +14,9 @@ unsigned int binary_to_uint(const char *b)
 	int length = strlen(b);
 	int count = length;
 
+	if (b == NULL)
+		return (0);
+
 	while (count--)
 	{
 		if (checknumber(b, length) == 0)
