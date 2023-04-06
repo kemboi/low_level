@@ -12,17 +12,19 @@ unsigned int binary_to_uint(const char *b)
 {
 	unsigned int n = 0, i = 0;
 	int length = strlen(b);
-	int count = length;
+	int l = length;
+	int power = 0;
 
 	if (b == NULL)
 		return (0);
 
-	while (count--)
+	while (length--)
 	{
-		if (checknumber(b, length) == 0)
+		if (checknumber(b, l) == 0)
 			return (0);
-		n += (*(b + i) == 49) ? (1 << count) : 0;
+		n += (*(b + length) == 49) ? (1 << power) : 0;
 		i++;
+		power++;
 	}
 	return (n);
 }
