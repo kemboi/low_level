@@ -4,7 +4,7 @@
 /**
  * flip_bits - counts number of bits required to flip to change a number
  * @n: given integer
- * @m: number to change to 
+ * @m: number to change to
  * Return: count
  */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
@@ -25,8 +25,9 @@ unsigned int count_setbits(int xor)
 
 	while (xor > 0)
 	{
-		xor &= (xor - 1);
-		count++;
+		if (xor & 1)
+			count++;
+		xor >>= 1;
 	}
-	return count;
+	return (count);
 }
