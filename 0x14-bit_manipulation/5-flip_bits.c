@@ -9,7 +9,7 @@
  */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	int mask;
+	unsigned int mask;
 
 	mask = (n ^ m);
 	return (count_setbits(mask));
@@ -19,15 +19,14 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
  * @xor: result of nXORm
  * Return: integer count
  */
-unsigned int count_setbits(int xor)
+unsigned int count_setbits(unsigned int xor)
 {
 	int count = 0;
 
-	while (xor > 0)
+	while (xor)
 	{
-		if (xor & 1)
-			count++;
-		xor >>= 1;
+		xor &= xor - 1;
+		count++;
 	}
 	return (count);
 }
