@@ -12,14 +12,17 @@ unsigned int binary_to_uint(const char *b)
 {
 	unsigned int n = 0, length = strlen(b), power = 0;
 
-	if (b == NULL || *b == '\0')
+	if (b == NULL)
 		return (0);
 
 	while (length--)
 	{
 		if (checknumber(b) == 0)
 			return (0);
-		n += (*(b + length) == 49) ? 1 << power : 0;
+		if (b[power] == '1')
+			n = (n << 1) | 1;
+		else if (b[power] == '0')
+			n <<= 1;
 		power++;
 	}
 	return (n);
