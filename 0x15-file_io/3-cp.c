@@ -48,8 +48,11 @@ void copy_text_from_file_a_to_b(const char *src, const char *dest)
 	}
 	while ((size = read(fpfrom, buff, 1024)) > 0)
 	{
-		write(fpto, buff, size);
-		return (1);
+		if (write(fpto, buff, size) != size || fpto == -1)
+		{
+			dprintf(2, "Error: Can't write to %s\n", dest);
+			exit(99);
+		}
 	}
 	if (size == -1)
 	{
