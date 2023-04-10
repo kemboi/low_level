@@ -24,9 +24,9 @@ int main(int argc, char **argv)
  * copy_text_from_file_a_to_b - reads textfile
  * @src: src file
  * @dest: dest file
- * Return: ..
+ * Return: none
  */
-int copy_text_from_file_a_to_b(const char *src, const char *dest)
+void copy_text_from_file_a_to_b(const char *src, const char *dest)
 {
 	int fpfrom, fpto = 0;
 	int size;
@@ -67,5 +67,4 @@ int copy_text_from_file_a_to_b(const char *src, const char *dest)
 		dprintf(2, "Error: Can't close fd %d\n", fpto);
 		exit(100);
 	}
-	return (1);
 }
