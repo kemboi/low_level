@@ -36,7 +36,7 @@ int copy_text_from_file_a_to_b(const char *src, const char *dest)
 	fpto = open(dest, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	fpfrom = open(src, O_RDONLY);
 
-	if (fpfrom == -1)
+	if (fpfrom == -1 || !src)
 	{
 		dprintf(2, "Error: Can't read from file %s\n", src);
 		exit(98);
@@ -50,6 +50,11 @@ int copy_text_from_file_a_to_b(const char *src, const char *dest)
 	{
 		write(fpto, buff, size);
 		return (1);
+	}
+	if (size == -1)
+	{
+		dprintf(2, "Error: Can't read from file %s\n", src);
+		exit(98);
 	}
 	if (close(fpfrom) == -1)
 	{
