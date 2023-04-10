@@ -28,12 +28,11 @@ int main(int argc, char **argv)
  */
 void copy_text_from_file_a_to_b(const char *src, const char *dest)
 {
-	int fpfrom, fpto = 0;
-	int size;
+	int size, fpfrom, fpto = 0;
 	char *buff;
 
 	buff = malloc(sizeof(char) * 1024);
-	fpto = open(dest, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	fpto = open(dest, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	fpfrom = open(src, O_RDONLY);
 
 	if (fpfrom == -1 || !src)
@@ -64,7 +63,6 @@ void copy_text_from_file_a_to_b(const char *src, const char *dest)
 		dprintf(2, "Error: Can't close fd %d\n", fpfrom);
 		exit(100);
 	}
-
 	if (close(fpto) == -1)
 	{
 		dprintf(2, "Error: Can't close fd %d\n", fpto);
