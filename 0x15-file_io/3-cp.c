@@ -32,7 +32,6 @@ void copy_text_from_file_a_to_b(const char *src, const char *dest)
 	char *buff;
 
 	buff = malloc(sizeof(char) * 1024);
-	fpto = open(dest, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	fpfrom = open(src, O_RDONLY);
 
 	if (fpfrom == -1 || !src)
@@ -40,11 +39,7 @@ void copy_text_from_file_a_to_b(const char *src, const char *dest)
 		dprintf(2, "Error: Can't read from file %s\n", src);
 		exit(98);
 	}
-	if (fpto == -1)
-	{
-		dprintf(2, "Error: Can't write to %s\n", dest);
-		exit(99);
-	}
+	fpto = open(dest, O_CREAT | O_RDWR | O_TRUNC, 0664);
 	while ((size = read(fpfrom, buff, 1024)) > 0)
 	{
 		if (write(fpto, buff, size) != size || fpto == -1)

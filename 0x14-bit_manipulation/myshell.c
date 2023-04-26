@@ -1,27 +1,27 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "header.h"
 /**
  * main - function to execute the simple shell program
  * @argc: number of arguments
  * @argv: pointer to store the array of arguments
+ * @envp: environmental variables
  * Return: 1 or 0
  */
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **envp)
 {
 	char *prompt = "(S_Shell) $ ", *line_input = NULL;
 	size_t size = 0;
 	ssize_t input = 0;
-	char *delimiter = " :'\n''\t'";
+	char *delimiter = " \n";
 	int i = 0;
 	int flag = 1;
 
 	(void) argc;
+	(void) **envp;
 	argv[i] = NULL;
 	while (flag)
 	{
-		printf("%s\n", prompt);
+		myprint(prompt, STDOUT_FILENO);
+		myprint("\n", STDOUT_FILENO);
 		input = getline(&line_input, &size, stdin);
 		if (input == -1)
 		{
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 		argv = getToken(line_input, delimiter, input);
 		while (argv[i] != NULL)
 		{
-			shellexec(argv);
+			shellexec(argv, environ);
 			free(argv[i]);
 			i++;
 		}
@@ -75,7 +75,7 @@ char **getToken(char *line_input, char *delimiter, ssize_t input)
 	tokenstring = malloc(sizeof(char *) * (countToken + 1));
 	if (tokenstring == NULL)
 	{
-		printf("Error allocating memory");
+		perror("Error allocating memory");
 		exit(0);
 	}
 	t = strtok(copy_string, delimiter);
@@ -90,3 +90,4 @@ char **getToken(char *line_input, char *delimiter, ssize_t input)
 	countToken = 0;
 	return (tokenstring);
 }
+
